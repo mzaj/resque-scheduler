@@ -39,6 +39,7 @@ at_exit do
 
   pid = `ps -e -o pid,command | grep [r]edis-test`.split(" ")[0]
   puts "Killing test redis server..."
+  dir = File.dirname(File.expand_path(__FILE__))
   `rm -f #{dir}/dump.rdb`
   Process.kill("KILL", pid.to_i)
   exit exit_code
